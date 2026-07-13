@@ -1,6 +1,6 @@
 "use client"
 
-import { Tooth, MapPin, Phone, Mail, Clock, AlertCircle } from "lucide-react"
+import { CircleDot, MapPin, Phone, Mail, Clock, AlertCircle } from "lucide-react"
 
 const quickLinks = [
   { label: "Home", href: "#home" },
@@ -31,7 +31,7 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-2 font-serif text-2xl font-bold mb-4">
-              <Tooth className="w-8 h-8 text-accent" />
+              <CircleDot className="w-8 h-8 text-accent" />
               Radiant Dental
             </div>
             <p className="text-white/60 text-sm leading-relaxed mb-6">
