@@ -2,7 +2,6 @@
 
 import { technologies } from "../lib/data"
 import SectionHeader from "../components/SectionHeader"
-import { useScrollReveal } from "../hooks/useScrollReveal"
 import { motion } from "framer-motion"
 
 export default function Technology() {
@@ -17,27 +16,23 @@ export default function Technology() {
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {technologies.map((tech, i) => {
-            const { ref, isVisible } = useScrollReveal()
-
-            return (
-              <motion.div
-                key={i}
-                ref={ref}
-                initial={{ opacity: 0, y: 40 }}
-                animate={isVisible ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: i * 0.1 }}
-                className="bg-white/8 backdrop-blur-xl border border-white/10 rounded-3xl p-8 hover:bg-white/12 hover:-translate-y-1 hover:border-accent/30 transition-all duration-400"
-              >
-                <h3 className="font-serif text-xl font-bold text-white mb-3">
-                  {tech.title}
-                </h3>
-                <p className="text-white/70 text-sm leading-relaxed">
-                  {tech.description}
-                </p>
-              </motion.div>
-            )
-          })}
+          {technologies.map((tech, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.6, delay: i * 0.1 }}
+              className="bg-white/8 backdrop-blur-xl border border-white/10 rounded-3xl p-8 hover:bg-white/12 hover:-translate-y-1 hover:border-accent/30 transition-all duration-400"
+            >
+              <h3 className="font-serif text-xl font-bold text-white mb-3">
+                {tech.title}
+              </h3>
+              <p className="text-white/70 text-sm leading-relaxed">
+                {tech.description}
+              </p>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
