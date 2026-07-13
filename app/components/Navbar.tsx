@@ -2,7 +2,7 @@
 
 import { useScrollPosition } from "../hooks/useScrollPosition"
 import { motion } from "framer-motion"
-import { Menu, X, Tooth } from "lucide-react"
+import { Menu, X, CircleDot } from "lucide-react"
 import { useState } from "react"
 
 const navLinks = [
@@ -37,7 +37,7 @@ export default function Navbar() {
       }`}
     >
       <a href="#home" className="flex items-center gap-2 font-serif text-2xl font-bold text-primary">
-        <Tooth className="w-8 h-8 text-accent" />
+       <CircleDot className="w-8 h-8 text-accent" />
         Radiant Dental
       </a>
 
