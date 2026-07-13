@@ -2,7 +2,6 @@
 
 import { testimonials } from "../lib/data"
 import SectionHeader from "../components/SectionHeader"
-import { useScrollReveal } from "../hooks/useScrollReveal"
 import { motion } from "framer-motion"
 import { Star } from "lucide-react"
 
@@ -18,7 +17,6 @@ export default function Testimonials() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {testimonials.map((testimonial, i) => {
-            const { ref, isVisible } = useScrollReveal()
             const initials = testimonial.name
               .split(" ")
               .map((n) => n[0])
@@ -27,9 +25,9 @@ export default function Testimonials() {
             return (
               <motion.div
                 key={i}
-                ref={ref}
                 initial={{ opacity: 0, y: 40 }}
-                animate={isVisible ? { opacity: 1, y: 0 } : {}}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.1 }}
                 transition={{ duration: 0.6, delay: i * 0.1 }}
                 className="bg-white rounded-2xl p-8 border border-primary/[0.06] hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.1)] transition-all duration-300"
               >
