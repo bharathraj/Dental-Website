@@ -2,7 +2,6 @@
 
 import { treatments } from "../lib/data"
 import SectionHeader from "../components/SectionHeader"
-import { useScrollReveal } from "../hooks/useScrollReveal"
 import { motion } from "framer-motion"
 import {
   Tooth,
@@ -47,18 +46,16 @@ export default function Treatments() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {treatments.map((treatment, i) => {
           const Icon = iconMap[treatment.icon] || Tooth
-          const { ref, isVisible } = useScrollReveal()
 
           return (
             <motion.div
               key={i}
-              ref={ref}
               initial={{ opacity: 0, y: 40 }}
-              animate={isVisible ? { opacity: 1, y: 0 } : {}}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.1 }}
               transition={{ duration: 0.6, delay: i * 0.05, ease: [0.4, 0, 0.2, 1] }}
               className="group relative bg-white rounded-3xl p-8 border border-primary/[0.06] hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.1)] hover:border-accent/15 hover:-translate-y-2 transition-all duration-400 overflow-hidden"
             >
-              {/* Top gradient line */}
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-accent to-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-400 origin-left" />
 
               <div className="w-14 h-14 bg-gradient-to-br from-accent/10 to-primary/10 rounded-2xl flex items-center justify-center mb-5 text-accent">
