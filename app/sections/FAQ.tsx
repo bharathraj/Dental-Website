@@ -3,7 +3,6 @@
 import { useState } from "react"
 import { faqs } from "../lib/data"
 import SectionHeader from "../components/SectionHeader"
-import { useScrollReveal } from "../hooks/useScrollReveal"
 import { motion, AnimatePresence } from "framer-motion"
 import { ChevronDown } from "lucide-react"
 
@@ -24,15 +23,14 @@ export default function FAQ() {
 
       <div className="space-y-4">
         {faqs.map((faq, i) => {
-          const { ref, isVisible } = useScrollReveal()
           const isOpen = openIndex === i
 
           return (
             <motion.div
               key={i}
-              ref={ref}
               initial={{ opacity: 0, y: 20 }}
-              animate={isVisible ? { opacity: 1, y: 0 } : {}}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.1 }}
               transition={{ duration: 0.5, delay: i * 0.05 }}
               className={`bg-white rounded-2xl border transition-all duration-300 ${
                 isOpen
